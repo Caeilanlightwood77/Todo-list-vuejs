@@ -2,7 +2,6 @@
   <v-app>
     <v-container fluid class="pa-0">
       <v-row no-gutters>
-        <!-- Sidebar with Task Lists -->
         <v-col cols="12" md="3" class="sidebar">
           <v-toolbar flat color="primary" dark class="mb-2">
             <v-toolbar-title>My Lists</v-toolbar-title>
@@ -29,7 +28,6 @@
                   mdi-delete
                 </v-icon>
                 <v-icon @click.stop="editList(index)">mdi-pencil</v-icon>
-                <!-- Edit List Icon -->
               </v-list-item-action>
             </v-list-item>
 
@@ -39,7 +37,6 @@
           </v-list>
         </v-col>
 
-        <!-- Main Content Area with Tasks -->
         <v-col cols="12" md="9" class="content-area">
           <v-toolbar flat color="primary" dark class="mb-2">
             <v-toolbar-title>{{
@@ -49,7 +46,6 @@
 
           <v-container v-if="selectedList.name">
             <v-row>
-              <!-- Task Input Form -->
               <v-col cols="12">
                 <v-text-field
                   v-model="newTaskTitle"
@@ -60,7 +56,6 @@
                 ></v-text-field>
               </v-col>
 
-              <!-- Task List -->
               <v-col cols="12">
                 <v-list>
                   <v-list-item
@@ -91,7 +86,6 @@
                         mdi-delete
                       </v-icon>
                       <v-icon @click.stop="editTask(index)">mdi-pencil</v-icon>
-                      <!-- Edit Task Icon -->
                     </v-list-item-action>
                   </v-list-item>
                 </v-list>
@@ -110,7 +104,6 @@
       </v-row>
     </v-container>
 
-    <!-- New List Dialog -->
     <v-dialog v-model="newListDialog" max-width="500px">
       <v-card>
         <v-card-title>{{
@@ -142,7 +135,6 @@
       </v-card>
     </v-dialog>
 
-    <!-- Task Edit Dialog -->
     <v-dialog v-model="taskEditDialog" max-width="500px">
       <v-card>
         <v-card-title>Edit Task</v-card-title>
@@ -205,21 +197,18 @@ export default {
           date: this.taskDate,
           repeat: this.repeat,
           priority: this.priority,
-          reminderTime: this.reminderTime, // New property for reminder time
+          reminderTime: this.reminderTime,
         };
         this.selectedList.tasks.push(task);
 
-        // Calculate the reminder time in milliseconds
-        const reminderTimeMs = task.reminderTime * 60 * 1000; // Convert minutes to milliseconds
+        const reminderTimeMs = task.reminderTime * 60 * 1000;
         const dueDate = new Date(task.date);
         const currentDate = new Date();
 
-        // Check if the due date is in the future
         if (dueDate > currentDate) {
           const timeUntilReminder =
             dueDate.getTime() - currentDate.getTime() - reminderTimeMs;
 
-          // Set a timeout for the reminder
           if (timeUntilReminder > 0) {
             setTimeout(() => {
               alert(`Reminder: Task "${task.title}" is due soon!`);
@@ -227,7 +216,6 @@ export default {
           }
         }
 
-        // Reset task fields
         this.newTaskTitle = "";
         this.reminderTime = null;
       }
@@ -322,7 +310,6 @@ export default {
 
 .v-toolbar {
   background-color: #0078d7 !important;
-  /* Microsoft To Do-like blue */
 }
 
 .v-btn {
@@ -350,6 +337,5 @@ export default {
 .delete-icon {
   cursor: pointer;
   color: red;
-  /* Red color for delete icon */
 }
 </style>

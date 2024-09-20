@@ -51,7 +51,6 @@
       class="mb-4"
     ></v-select>
 
-    <!-- Task Title -->
     <v-text-field
       v-model="taskTitle"
       label="Task Title"
@@ -59,8 +58,7 @@
       outlined
       class="mb-4"
     ></v-text-field>
-    
-    <!-- Schedule Task with Date Picker -->
+
     <v-menu
       v-model="menu"
       :close-on-content-click="false"
@@ -88,7 +86,6 @@
       ></v-date-picker>
     </v-menu>
 
-    <!-- Repeat Option -->
     <v-select
       v-model="repeat"
       :items="repeatOptions"
@@ -98,7 +95,6 @@
       class="mb-4"
     ></v-select>
 
-    <!-- Priority Level -->
     <v-select
       v-model="priority"
       :items="['Low', 'Medium', 'High']"
@@ -145,15 +141,15 @@ export default {
         date: this.taskDate,
         repeat: this.repeat,
         priority: this.priority,
-        reminderTime: this.reminderTime, // Include reminder time
+        reminderTime: this.reminderTime, 
       });
-      // Reset fields
+
       this.taskTitle = "";
       this.taskDate = "";
       this.taskDateInternal = null;
       this.repeat = "";
       this.priority = "";
-      this.reminderTime = null; // Reset reminder time
+      this.reminderTime = null; 
     },
   },
 };
